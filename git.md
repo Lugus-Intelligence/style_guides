@@ -13,7 +13,7 @@ The commit message must follow this format:
 
 The beggining of the message leads with an emoji to quikcly identify the commit pourpose, follwed by the "context",
 which is a combination of one or more words separated by "/" that tell us what part of the code or function was modified.
-The description of the commit summarize your modifications.
+The description of the commit summarizes your modifications. Verbs should be written in their imperative form.
 
 
 ### 1.2. Types
@@ -23,36 +23,42 @@ It helps us debug faster or track the modifications with more granularity.
 The commit types we use are described below with their corresponding emoji identifier
 
 
-|Commit type          		| Emoji identifier 					| Pourpose                                                                      |
+|Commit type                | Emoji identifier                  | Purpose                                                                       |
 |---------------------------|-----------------------------------|-------------------------------------------------------------------------------|
-|    feature 				|:sparkles:    		(`:sparkles:`)	|Un nuevo feature																|
-|    bugfix	 				|:bug:              (`:bug:`)		|La corrección de un bug														|
-|    docummentation	 		|:books:       		(`:books:`)		|Cambios en la documentación													|
-|    styling 				|:lipstick:			(`:lipstick:`)	|Cambios que no afectan el significado del código (espacios, indentación, etc.)	|
-|    refactor 				|:art:              (`:art:`)		|Un cambio en el código que no agrega una funcionalidad ni corrige un bug		|
-|    optimization 			|:repeat:          	(`:repeat:`)	|Cambios en el código que sólo mejoran la performance							|
-|    testing 				|:pencil:       	(`:pencil:`)	|Agrega, corrige o mejora tests													|
-|    configurations 		|:wrench:			(`:wrench:`)	|Cambios al proceso de build y herramientas auxiliares							|
-|    security 				|:lock:             (`:lock:`)		|Security upgrades, fixes														|
-|    dependency				|:link:				(`:link:`)		|Changes to the libraries used (upgrade/downgrade/new)							|
-|    deprecation 			|:skull:            (`:skull:`):	|Mark code as deprecated to be removed in future versions						|
+|    feat                   |:sparkles:         (`:sparkles:`)  |Un nuevo feature                                                               |
+|    fix                    |:bug:              (`:bug:`)       |La corrección de un bug                                                        |
+|    docs                   |:books:            (`:books:`)     |Cambios en la documentación                                                    |
+|    style                  |:lipstick:         (`:lipstick:`)  |Cambios que no afectan el significado del código (espacios, indentación, etc.) |
+|    refactor               |:art:              (`:art:`)       |Un cambio en el código que no agrega una funcionalidad ni corrige un bug       |
+|    perf                   |:repeat:           (`:repeat:`)    |Cambios en el código que sólo mejoran la performance                           |
+|    test                   |:pencil:           (`:pencil:`)    |Adds, removes, corrects or enhances tests                                      |
+|    conf                   |:wrench:           (`:wrench:`)    |Changes to config files                                                        |
+|    chore                  |:broom:            (`:broom:`):    |Changes to the build process, maintenance and auxiliary tools                  |
+|    rm                     |:skull:            (`:skull:`):    |Deprecated code                                                                |
 
 ----
 
 
 ### 2. Workflow
-### 2.1. Branch Types
 
-We work using a methodology called gitflow. That being said, we use 6 branch types:
+### 2.1. Main Branches
+At all times the project should have the following branches.
+* `main:`                   This branch contains the code that has been tested and is ready to be deployed.
+* `dev:`                    This branch contains code that's ready to become part of the main branch. Pull requests that make it to this branch must fully be tested.
 
-* `master:` 				This branch contains commits with all the release versions, The code here has been fully tested and is ready to be deployed.
-* `hotfix/bug_name:` 		This branch is born from `master`. This branches must die ASAP, they fix a problem detected on a release version that made it to master.
-* `development:` 			This branch comes from `master`, it contains code that's ready to become part of a release. Pull requests that make it to this branch must fully be tested.
-* `release/x.x.x:`			This branch is born from `develop`. All minor modifications needed to take the code to a production version x.x.x must be performed here.
-* `feat/feature_name:` 		Feature branches are born from the `develop`, they contain code for new functionalities.
-* `bugfix/bug_name:		This branch is born from `develop`. Bug fix branches have a short life-spawn and their pourpose is to solve problems from buggy features that made it to development.
+#### 2.1.1 (Optional)
+* `release/x.x.x:`          This branch is born from the `main` branch, and marks a milestone with a set of features.
 
-### 2.2 Pull Requests
+### 2.2. Working Branches
+Branches should be named after their purpose with the following syntax `type/context`.
+Context should identify what/where you are working. For example the name of a component, feature or file.
+* `fix/data_normalization`
+* `style/topbar`
+* `feat/readme`
+
+***:warning: All branches should be deleted after being merged :warning:***
+
+### 2.3 Pull Requests
 To integrate branch `B` into branch `A` you must folllow the next steps:
 
 **1**. Merge the latest version of `A` into `B` and check that the code still works
@@ -64,3 +70,4 @@ To integrate branch `B` into branch `A` you must folllow the next steps:
 **4**. Update your Pull request with the corresponding modifications
 
 **5**. Delete branch after it is merged into development
+
